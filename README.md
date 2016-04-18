@@ -1,2 +1,2 @@
-# pushbullet_client
-A python implementation of a Pushbullet client
+# Pushbullet Client
+Pushbullet client module for python
