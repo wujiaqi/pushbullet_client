@@ -18,7 +18,7 @@ class PBUnauthorizedException(Exception):
 	def __str__(self):
 		return repr(self.value)
 
-def push_to_channel(channel_tag, title, message, token):
+def push_note_to_channel(channel_tag, title, message, token):
 	params = {
 		"channel_tag": channel_tag,
 		"type": "note",
@@ -27,7 +27,7 @@ def push_to_channel(channel_tag, title, message, token):
 	}
 	r = requests.post(PB_API + "/v2/pushes", data = params, auth = PBAuth(token))
 	if r.status_code == requests.codes.unauthorized:
-		raise PBUnauthorizedException("Invalid token")
+		raise PBUnauthorizedException("Invalid Pushbullet access token")
 	elif r.status_code != requests.codes.ok:
-		raise Exception
+		raise Exception("Request Failed with status code " + r.status_code)
     
